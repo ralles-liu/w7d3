@@ -33,16 +33,35 @@ RSpec.describe User, type: :model do
       expect(User.find_by_credentials("ralles", "adfadfaf")).to eq(nil) 
       expect(User.find_by_credentials("ralles_wrong", "good_password")).to eq(nil)   
     end
-
-    
   end
+
+    describe "#reset_session_token!" do 
+      
+      it "should create a new session token" do 
+          expect(user.session_token).to_not be_nil
+          old_token = user.session_token
+          user.reset_session_token!
+          expect(user.session_token).to_not eq(old_token)
+      end
+    end
+
+    describe "#is_password?" do 
+
+      it "tests if our user's password is correct" do 
+
+        expect(is_password?("good_password")).to be true
+        expect(is_password?("password")).to be false
+      end
+    end
+
+  
     
   
 
 
   # methods
-  #find_by_credentials
-  #generate_sesssion_token
+  #find_by_credentials done
+  #generate_sesssion_token hekper
   #reset_session_token!
   #password=(password)
   #is_password?
