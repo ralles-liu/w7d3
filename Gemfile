@@ -39,6 +39,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails' # Rails version of rspec
+  gem 'factory_bot_rails' # generate model instances & save them to test DB
+  gem 'rails-controller-testing' # provides helpful methods for testing
 end
 
 group :development do
@@ -48,14 +51,21 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'faker' # Easily generate random data for seeding
+  gem 'capybara' # Specifically for integration testing
+  gem 'launchy' # key method: `save_and_open_page` will automatically open page in browser
+  gem 'shoulda-matchers' # easy one-liners for testing with rspec-rails
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
